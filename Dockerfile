@@ -18,4 +18,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "TAPAS.APP.UI.dll"]
 
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet tapas-app.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet TAPAS.APP.UI.dll
