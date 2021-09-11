@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TAPAS.APP.UI.Models;
 
 namespace TAPAS.APP.UI.Controllers
 {
@@ -30,7 +31,7 @@ namespace TAPAS.APP.UI.Controllers
         // POST: LoginController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Authenticate(LoginDetailsViewModel loginDetailsViewModel)
         {
             try
             {
@@ -42,19 +43,19 @@ namespace TAPAS.APP.UI.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Authenticate(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Authenticate(IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: LoginController/Edit/5
         public ActionResult Edit(int id)
