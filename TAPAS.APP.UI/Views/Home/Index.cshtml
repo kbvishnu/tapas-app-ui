@@ -1,9 +1,98 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model LoginDetailsViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tapas DEMO</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body style="background-image: url(/images/thrikka.jpeg); background-repeat: no-repeat; background-color: #FFE3E3; ">
+    <header>
+    </header>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p>Please Log in to Continue!</p>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="col"> &nbsp;</div>
+                <div class="col" style="background-color: #E4D8DC">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="float-right text-right">
+                                <h4 class="display-4  text-right">Welcome</h4>
+                                <p class="text-right"> Temple Automation Processing Analytics Solution (TAPAS)</p>
+
+                            </div>
+                            <div class="row">
+                                <div class="float-right text-right" style="display:none;">
+                                    <div class="alert alert-dismissible alert-info">
+                                        <strong><span style="color: #000000 ">Please enter valid username and password !</span></strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <form>
+                                        @using (Html.BeginForm("Authenticate", "Login"))
+                                        {
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Username</label>
+                                                @Html.TextBoxFor(p => p.UserName, new { @class = "form-control", aria_describedby = "emailHelp", placeholder = "Enter username" })
+                                                <small id="emailHelp" class="form-text text-muted">Enter the registered username.</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Password</label>
+                                                @Html.PasswordFor(p => p.Password, new { @class = "form-control", placeholder = "Password" })
+                                            </div>
+                                            <div class="form-group form-check">
+                                                @*<input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>*@
+                                            </div>
+                                            <input type="submit" class="btn btn-primary">Submit</input>
+                                        }
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="container-fluid">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        @*<h1 class="display-4">Welcome</h1>*@
+                        <p> </p>
+                        <p></p>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - Tapas  - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html>
+
+
+
+
+
+
