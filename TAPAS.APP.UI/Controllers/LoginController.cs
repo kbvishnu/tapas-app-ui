@@ -6,8 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using TAPAS.APP.UI.Models;
 
+
 namespace TAPAS.APP.UI.Controllers
 {
+    
     public class LoginController : Controller
     {
         // GET: LoginController
@@ -28,13 +30,40 @@ namespace TAPAS.APP.UI.Controllers
             return View();
         }
 
+        public ActionResult Home()
+        {
+            return View();
+        }
+
         // POST: LoginController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Authenticate(LoginDetailsViewModel loginDetailsViewModel)
+       
+        public IActionResult Authenticate(LoginDetailsViewModel loginDetailsViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var User = DataStore.UserServiceClient.RegisteredUsers.AsQueryable().Where(q => q.UserName.Equals(loginDetailsViewModel.UserName)
+                 && q.Password.Equals(loginDetailsViewModel.Password)).FirstOrDefault();
+
+                if (User != null)
+                {
+                    TempData["LoggedInUser"] = User.UserName;
+                    return RedirectToAction("Home", "Home");
+                }
+               
+
+                ModelState.AddModelError("InvalidCredentials", "Username/TenanId/Password combination is not valid.");
+            }
+
+            return RedirectToAction("~/Views/Home/Index.cshtml", loginDetailsViewModel);
+        }
+        [HttpGet]
+        public IActionResult Authenticate()
         {
             try
             {
+
                 return RedirectToAction(nameof(Index));
             }
             catch

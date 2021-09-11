@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using TAPAS.APP.UI.DataStore;
 using TAPAS.APP.UI.Models;
 
 namespace TAPAS.APP.UI.Controllers
@@ -21,6 +22,13 @@ namespace TAPAS.APP.UI.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Home()
+        {
+            var userName=(string)TempData.Peek("LoggedInUser");
+            var User = DataStore.UserServiceClient.RegisteredUsers.AsQueryable().Where(q => q.UserName.Equals(userName)).FirstOrDefault();
+            return View("home", User);
         }
 
         public IActionResult Privacy()

@@ -21,7 +21,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="float-right text-right">
-                                <h4 class="display-4  text-right">Welcome</h4>
+                                <h4 class="display-4  text-right">Welcome to TAPAS</h4>
                                 <p class="text-right"> Temple Automation Processing Analytics Solution (TAPAS)</p>
 
                             </div>
@@ -34,26 +34,47 @@
                             </div>
                             <div class="row">
                                 <div class="container-fluid">
-                                    <form>
-                                        @using (Html.BeginForm("Authenticate", "Login", FormMethod.Post,true))
-                                        {
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Username</label>
-                                                @Html.TextBoxFor(p => p.UserName, new { @class = "form-control", aria_describedby = "emailHelp", placeholder = "Enter username" })
-                                                <small id="emailHelp" class="form-text text-muted">Enter the registered username.</small>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Password</label>
-                                                @Html.PasswordFor(p => p.Password, new { @class = "form-control", placeholder = "Password" })
-                                            </div>
-                                            <div class="form-group form-check">
-                                                @*<input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>*@
-                                            </div>
-                                            <input type="submit" class="btn btn-primary" title="Submit"/>
-                                        }
-                                    </form>
+                                    @using (Html.BeginForm("Authenticate", "Login", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Username</label>
+                                        @Html.TextBoxFor(p => p.TenantId
+                                        , new
+                                             {
+                                                 @class = "form-control",
+                                                 aria_describedby = "emailHelp",
+                                                 placeholder = "Enter tenantId"
+                                             })
+                                        <small id="emailHelp" class="form-text text-muted">Enter your tenantId.</small>
+                                        <span asp-validation-for="TenantId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Username</label>
+                                        @Html.TextBoxFor(p => p.UserName
+                                        , new
+                                             {
+                                                 @class = "form-control",
+                                                 aria_describedby = "emailHelp",
+                                                 placeholder = "Enter username"
+                                             })
+                                        <small id="emailHelp" class="form-text text-muted">Enter the registered username.</small>
+                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                    </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Password</label>
+                                            @Html.PasswordFor(p => p.Password
+                                            , new { @class = "form-control", placeholder = "Password" })
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group form-check">
+                                            @*<input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                <label class="form-check-label" for="exampleCheck1">Check me out</label>*@
+                                        </div>
 
+                                        <input type="submit" class="btn btn-primary" title="Submit" />
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    }
                                 </div>
                             </div>
                             <div class="row">
