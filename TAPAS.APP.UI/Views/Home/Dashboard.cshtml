@@ -1,0 +1,145 @@
+﻿@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <h4 class="text-info"><strong>Dashboard</strong></h4>
+                <hr />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card bg-primary mb-3" style="max-width: 20rem;">
+                        <div class="card-header text-center"><strong>Vazhipadu Counter</strong></div>
+                        <div class="card-body">
+                            <h3 class="card-title text-center"><strong>30</strong></h3>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card bg-warning mb-3" style="max-width: 20rem;">
+                        <div class="card-header text-center"><strong>Recurring Vazhipadu</strong></div>
+                        <div class="card-body">
+                            <h3 class="card-title  text-center"><strong>10</strong></h3>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card bg-success mb-3" style="max-width: 20rem;">
+                        <div class="card-header text-center"><strong>Debits</strong></div>
+                        <div class="card-body">
+                            <h3 class="card-title text-center"><strong>300</strong></h3>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card bg-danger mb-3" style="max-width: 20rem;">
+                        <div class="card-header text-center"><strong>Credits</strong></div>
+                        <div class="card-body">
+                            <h3 class="card-title text-center"><strong>150</strong></h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <h4  class="text-info"><strong>Reccuring List</strong></h4>
+                <hr />
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="container-fluid">
+                <div class="row">
+                    <table id="recurringVazhipadu" class="display" width="100%"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        &nbsp;
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <h4  class="text-info"><strong>Today Transactions</strong></h4>
+                <hr />
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="container-fluid">
+                <div class="row">
+                    <table id="transationsToday" class="display" width="100%"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    var reccuringData = [
+        ["Archana", "Jishnu", "Rohini", "2021/01/01", "4", "500", "500", "0"],
+        ["PaalPaaysam", "Jishnu", "Rohini", "2021/01/01", "4", "1500", "1000", "500"],
+        ["Archana", "Meera", "Revathy", "2021/08/15", "2", "100", "150", "-50"],
+        ["Archana", "Santhosh", "Utthradam", "2021/05/01", "15", "1500", "3000", "500"],
+        ["PaalPaaysam", "Vishnu", "Utthradam", "2021/01/01", "24", "2500", "3000", "500"]
+    ];
+
+
+
+    var todaysData = [
+        ["Archana", "Kiran", "Rohini", "10", "10", "0"],
+        ["PaalPaaysam", "Jyothi", "Rohini", "100", "100", "0"],
+        ["Archana", "Meera", "Revathy", "30", "150", "-120"],
+        ["Archana", "Santhosh", "Ganapathy Homam", "1500", "0", "50"],
+        ["PaalPaaysam", "Vishnu", "Utthradam", "100", "100", "0"]
+    ];
+
+    $(document).ready(function () {
+        $.noConflict();
+        $('#recurringVazhipadu').DataTable({
+            data: reccuringData,
+            columns: [
+                { title: "Vazhipadu Name" },
+                { title: "Name" },
+                { title: "Star" },
+                { title: "Order Date" },
+                { title: "Remaining Occurance" },
+                { title: "Total Amount" },
+                { title: "Amount Paid" },
+                { title: "Balance" }
+            ]
+        });
+
+        $('#transationsToday').DataTable({
+            data: todaysData,
+            columns: [
+                { title: "Vazhipadu Name" },
+                { title: "Name" },
+                { title: "Star" },
+                { title: "Total Amount" },
+                { title: "Amount Paid" },
+                { title: "Balance" }
+            ]
+        });
+    });
+</script>
+

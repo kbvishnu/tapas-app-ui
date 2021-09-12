@@ -49,7 +49,7 @@ namespace TAPAS.APP.UI.Controllers
                 if (User != null)
                 {
                     TempData["LoggedInUser"] = User.UserName;
-                    return RedirectToAction("Home", "Home");
+                    return RedirectToAction("Dashboard", "Home");
                 }
                
 

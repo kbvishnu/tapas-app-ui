@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,12 @@ namespace TAPAS.APP.UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMapper mapper)
         {
             _logger = logger;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -24,11 +27,14 @@ namespace TAPAS.APP.UI.Controllers
             return View();
         }
 
-        public IActionResult Home()
+        public IActionResult Dashboard()
         {
-            var userName=(string)TempData.Peek("LoggedInUser");
+            var userName = (string)TempData.Peek("LoggedInUser");
             var User = DataStore.UserServiceClient.RegisteredUsers.AsQueryable().Where(q => q.UserName.Equals(userName)).FirstOrDefault();
-            return View("home", User);
+
+            var userDetailVM = _mapper.Map<UserDetailsViewModel>(User);
+
+            return View("Dashboard", new DashboardViewModel() { User = userDetailVM });
         }
 
         public IActionResult Privacy()

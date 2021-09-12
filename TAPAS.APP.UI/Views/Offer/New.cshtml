@@ -1,0 +1,205 @@
+﻿@model TAPAS.APP.UI.DataStore.OfferingTransactionDetail
+
+@{
+    ViewData["Title"] = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <h4 class="text-info"><strong>New Order</strong></h4>
+                <hr />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-5">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Vazhipadu Name</label>
+                        <select class="form-control" id="vazhipaduNameList">
+                            <option>Select</option>
+                            <option>Paalpaayasam</option>
+                            <option>Archana</option>
+                            <option>KadumPaayasam</option>
+                            <option>Ganapathihoomam</option>
+                            <option>Neeranjanam</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Star/Nakshathram</label>
+                        <select class="form-control" id="nakshathramList">
+                            <option>Select</option>
+                            <option>Chithira</option>
+                            <option>Chothy</option>
+                            <option>Makayirum</option>
+                            <option>Pooradam</option>
+                            <option>Rohini</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" class="form-check-input" id="IsReccuring">
+                        <label class="form-check-label" for="exampleCheck1">Reccuring</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Duration</label>
+                        <input type="email" class="form-control" id="Duration" aria-describedby="emailHelp" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rate</label>
+                        <input type="email" class="form-control" id="Rate" aria-describedby="emailHelp" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+
+                </div>
+                <div class="col-lg-5">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Execution Date</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Reccuring Condition</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Select</option>
+                            <option>On particular star on every month</option>
+                            <option>On first of every malayalam month</option>
+                            <option>On every tuesday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Total</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <h4 class="text-info"><strong>Order Details</strong></h4>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <table id="orderDetails" class="display" width="100%"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <h4 class="text-info"><strong>Total Amount</strong></h4>
+                        <hr />
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Total Amount</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Amount Paid)</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Balance</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mobile Number</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        &nbsp;
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit &amp; Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+
+    var todaysData = [
+        ["Archana", "Jishnu", "Rohini", "15", "0", "15", "", "2021/9/12",],
+        ["PaalPaaysam", "Jishnu", "Rohini", "100", "10", "1000", "On every tuesday", "2021/9/16",],
+        ["Archana", "Meera", "Revathy", "15", "10", "150", "On particular star of every month", "2021/9/15",],
+        ["Archana", "Santhosh", "Utthradam", "15", "15", "1500", "On first of every malayalam month", "2021/9/12",],
+        ["PaalPaaysam", "Vishnu", "Utthradam", "100", "24", "2400", "On first of every malayalam month", "2021/9/12",]
+    ];
+
+    $(document).ready(function () {
+        $.noConflict();
+
+        $('#orderDetails').DataTable({
+            data: todaysData,
+            columns: [
+                { title: "Vazhipadu Name" },
+                { title: "Name" },
+                { title: "Star" },
+                { title: "Rate" },
+                { title: "Count" },
+                { title: "Amount" },
+                { title: "Condition" },
+                { title: "Date Start" }
+            ],
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "searching": false
+        });
+    });
+</script>
